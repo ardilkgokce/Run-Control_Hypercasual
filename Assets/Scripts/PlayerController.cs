@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameManager gameManager;
     void Start()
     {
-        
+
     }
 
     private void FixedUpdate()
@@ -28,6 +26,14 @@ public class PlayerController : MonoBehaviour
                 transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x +
                     0.1f, transform.position.y, transform.position.z), 0.3f);
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.name == "x2" || other.name == "+3" || other.name == "-4" || other.name == "/2")
+        {
+            gameManager.AgentManagement(other.name, other.transform);
         }
     }
 }

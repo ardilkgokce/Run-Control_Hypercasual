@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -17,5 +15,13 @@ public class NavMeshController : MonoBehaviour
     private void LateUpdate()
     {
         agent.SetDestination(target.transform.position);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("SpikeBox"))
+        {
+            GameObject.FindWithTag("GameManager").GetComponent<GameManager>().charCount--;
+            gameObject.SetActive(false);
+        }
     }
 }
