@@ -1,10 +1,11 @@
+using Ardil;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject targetPoint;
-    public int charCount = 1;
+    public static int charCount = 1;
 
 
     public List<GameObject> spawnList = new List<GameObject>();
@@ -17,36 +18,15 @@ public class GameManager : MonoBehaviour
     {
 
     }
-    public void AgentManagement(string data, Transform _transform)
+    public void AgentManagement(string operations, int inputNumber, Transform _transform)
     {
-        switch (data)
+        switch (operations)
         {
-            case "x2":
-                int sayi = 0;
-                foreach (var item in spawnList)
-                {
-                    if (sayi < charCount)
-                    {
-
-
-                        if (!item.activeInHierarchy)
-                        {
-                            item.transform.position = _transform.position;
-                            item.SetActive(true);
-                            sayi++;
-                        }
-
-                    }
-                    else
-                    {
-                        sayi = 0;
-                        break;
-                    }
-                }
-                charCount *= 2;
+            case "Multiply":
+                Library.Multiply(inputNumber, spawnList, _transform);
                 break;
 
-            case "+3":
+            case "RackUp":
                 int sayi2 = 0;
                 foreach (var item in spawnList)
                 {
@@ -71,7 +51,7 @@ public class GameManager : MonoBehaviour
                 charCount += 3;
                 break;
 
-            case "-4":
+            case "Minus":
 
 
                 if (charCount < 4)
@@ -109,7 +89,7 @@ public class GameManager : MonoBehaviour
 
                 break;
 
-            case "/2":
+            case "Divide":
 
 
                 if (charCount <= 2)

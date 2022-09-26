@@ -20,7 +20,7 @@ public class NavMeshController : MonoBehaviour
     {
         if (other.CompareTag("SpikeBox"))
         {
-            GameObject.FindWithTag("GameManager").GetComponent<GameManager>().charCount--;
+            GameManager.charCount--;
             gameObject.SetActive(false);
         }
     }

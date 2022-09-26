@@ -31,9 +31,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == "x2" || other.name == "+3" || other.name == "-4" || other.name == "/2")
+        if (other.CompareTag("Multiply") || other.CompareTag("RackUp") || other.CompareTag("Divide") || other.CompareTag("Minus"))
         {
-            gameManager.AgentManagement(other.name, other.transform);
+            int sayi = int.Parse(other.name);
+            gameManager.AgentManagement(other.tag, sayi, other.transform);
         }
     }
 }
